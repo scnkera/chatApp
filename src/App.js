@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./Header";
+import MessagesList from "./MessagesList";
+import MessageInput from "./MessageInput";
+import { useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [messagesInState, setMessages] = useState([
+		{
+			text: "Hello World. First message!",
+			timestamp: new Date(),
+			outgoing: true,
+		},
+		{
+			text: "Responding to hello out there!",
+			timestamp: new Date(),
+			outgoing: false,
+		},
+	]);
+	return (
+		<div className="container">
+			<Header />
+			<MessagesList messagesToList={messagesInState} />
+			<MessageInput />
+		</div>
+	);
 }
 
 export default App;
